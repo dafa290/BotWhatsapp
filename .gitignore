@@ -1,0 +1,11 @@
+node_modules/
+auth_info_baileys/
+.chrome_debug_profile/
+.deepseek_memory.json
+.deepseek_knowledge.json
+.deepseek_repo_index.json
+.aigoks_backup/
+.deepseek_backup/
+daps/
+package-lock.json
+*.log
