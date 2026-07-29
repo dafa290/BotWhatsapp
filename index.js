@@ -23,7 +23,7 @@ process.on('unhandledRejection', (reason, promise) => {
 });
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Keamanan: isi nomor WA kamu (628xxxxx@c.us). Kosong = semua boleh (tidak disarankan).
 const OWNER_JIDS = (process.env.WA_OWNER || '')
