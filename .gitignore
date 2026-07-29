@@ -6,6 +6,9 @@ auth_info_baileys/
 .deepseek_repo_index.json
 .aigoks_backup/
 .deepseek_backup/
+.wa_reminders.json
+.wa_group_cache.json
 daps/
 package-lock.json
 *.log
+.env
