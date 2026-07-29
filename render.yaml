@@ -1,9 +1,11 @@
 services:
   - type: web
     name: whatsapp-ai-bot
-    env: docker
+    env: node
     plan: free
     healthCheckPath: /
+    buildCommand: npm install
+    startCommand: npm start
     envVars:
       - key: PORT
         value: 3000
