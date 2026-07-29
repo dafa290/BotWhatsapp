@@ -188,14 +188,15 @@ async function fetchKimiChat(promptText, isSystemResult = false) {
     const headers = {
         'accept': '*/*',
         'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',
-        'authorization': 'Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ1c2VyLWNlbnRlciIsImV4cCI6MTc4NTY3OTAwOSwiaWF0IjoxNzgzMDg3MDA5LCJqdGkiOiJkOTNydjhkcjFyOGl1aWNicWdpMCIsInR5cCI6ImFjY2VzcyIsImFwcF9pZCI6ImtpbWkiLCJzdWIiOiJkNmVwbHBuZnRhZTY4NGpvMjVhZyIsInNwYWNlX2lkIjoiZDZlcGxwZmZ0YWU2ODRqbzFrZzAiLCJhYnN0cmFjdF91c2VyX2lkIjoiZDZlcGxwZmZ0YWU2ODRqbzFrZmciLCJzc2lkIjoiMTczMTU4Nzg3NzI1MjU1MzAxOSIsImRldmljZV9pZCI6Ijc2NTgyOTg0NTY4NDIxODc1MzUiLCJyZWdpb24iOiJvdmVyc2VhcyIsIm1lbWJlcnNoaXAiOnsibGV2ZWwiOjEwfX0.fccO4uhq8pytj-k--sENeRKcvExG1Aujkop3jbPvLeukmw5SzwUE3ZsAa80wFdmXV3lUFUKRd9s00gg7TJ6Avg',
+        'authorization': 'Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ1c2VyLWNlbnRlciIsImV4cCI6MTc4Nzg4NzU1NiwiaWF0IjoxNzg1Mjk1NTU2LCJqdGkiOiJkOWtuNWgwdThsZDk1cWsyMHVsZyIsInR5cCI6ImFjY2VzcyIsImFwcF9pZCI6ImtpbWkiLCJzdWIiOiJkNmVwbHBuZnRhZTY4NGpvMjVhZyIsInNwYWNlX2lkIjoiZDZlcGxwZmZ0YWU2ODRqbzFrZzAiLCJhYnN0cmFjdF91c2VyX2lkIjoiZDZlcGxwZmZ0YWU2ODRqbzFrZmciLCJzc2lkIjoiMTczMTU4Nzg3NzI1MjU1MzAxOSIsImRldmljZV9pZCI6Ijc2Njc3ODU5MTUwNDUwMTU1NjQiLCJyZWdpb24iOiJvdmVyc2VhcyJ9.hsvKaFbXIwiNzY5Af-yyW9vyr3GEQewim8s-xRCokaoHZWhmQq8OHRpEcS7glDn56gUuBpEovAveQ_2sf3Unkw',
         'connect-protocol-version': '1',
         'content-type': 'application/connect+json',
         'origin': 'https://www.kimi.com',
         'r-timezone': 'Asia/Jakarta',
         'referer': 'https://www.kimi.com/?chat_enter_method=new_chat',
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 Edg/150.0.0.0',
         'x-msh-session-id': '1731587877252553019',
+        'x-msh-device-id': '7667785915045015564',
         'x-msh-platform': 'web'
     };
 
@@ -288,8 +289,14 @@ ATURAN ARSITEKTUR & PROFESIONALISME KODE (SANGAT PENTING):
     const finalPrompt = systemPrompt + contextString;
     const payload = {
         "scenario": "SCENARIO_K2D5",
-        "message": { "role": "user", "blocks": [{ "text": { "content": finalPrompt } }] },
-        "options": { "thinking": false, "enable_plugin": false } // NONAKTIFKAN PLUGIN INTERNAL
+        "tools": [
+            { "type": "TOOL_TYPE_SEARCH", "search": {} },
+            { "type": "TOOL_TYPE_CRON_JOB" }
+        ],
+        "message": { "role": "user", "blocks": [{ "message_id": "", "text": { "content": finalPrompt } }] },
+        "is_goal": false,
+        "options": { "thinking": false, "enable_plugin": false, "reasoning_effort": "REASONING_EFFORT_LOW" },
+        "project_id": ""
     };
 
     try {
