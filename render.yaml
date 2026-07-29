@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: whatsapp-ai-bot
+    env: docker
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: PORT
+        value: 3000
+      - key: MONGO_URI
+        sync: false # User must set this in the Render Dashboard
+      - key: GEMINI_API_KEY
+        sync: false # User must set this in the Render Dashboard
+      - key: WA_OWNER
+        sync: false # User must set this in the Render Dashboard
